@@ -1,0 +1,24 @@
+{% extends 'layouts/default.html' %}
+
+{% block body %}
+
+	<h1>Bienvenue sur GrandPy Bot !</h1>
+
+	<p>N'hésitez pas à demander une petite adresse à notre GrandPy préféré !</p>
+
+        <form action="" method="post">
+
+            <label for="msg">Votre question</label><br />
+
+            <textarea id="msg" name="msg"></textarea><br />
+
+            <input type="submit" value="Envoyer">
+
+        </form>
+
+    </br><iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBtKZJuJonuqxYsm_f6BTcvP3UTQpzZ8gU&q={{ search }}Paris+France" allowfullscreen></iframe> 
+
+	</br></br><img src="/static/images/grandpy_{{ grandpy }}.png" width="10%" height="10%" />
+
+	
+{% endblock %}

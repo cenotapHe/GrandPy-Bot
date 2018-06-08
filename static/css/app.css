@@ -1,0 +1,41 @@
+body
+{
+    background-color: #fff;
+    color: #111;
+}
+
+.wrapper
+{
+    width: 1440px;
+    min-width: 800px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+a
+{
+    color: #1ce;
+}
+
+header, footer
+{
+    margin: 3em 1em;
+    background-color: #334;
+    color : #fff;
+    padding: 3px;
+    padding-left: 50px;
+    border-radius: 5px;
+}
+
+.citation
+{
+    font-style: italic;
+    font-size: 3.5em;
+}
+
+textarea
+{
+    width: 400px;
+    height: 150px;
+    resize: none;
+}

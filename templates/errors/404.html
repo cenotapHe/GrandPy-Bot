@@ -1,0 +1,10 @@
+{% extends 'layouts/default.html' %}
+
+{% block title %}Erreur 404 - {{ super() }}{% endblock %}
+
+{% block body %}
+	<h1>Erreur 404</h1>
+
+	<p>On est désolé, mais il semblerait que notre GrandPy national ne possède pas cette page. Pourquoi ne pas retourner sur <a href="{{ url_for('home') }}">la page principale</a> pour discuter avec lui ?</p>
+
+{% endblock %}

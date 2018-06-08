@@ -1,0 +1,9 @@
+{
+"sentence_salutation" : ["Bonjour mon petit !", "Coucou toi, comment tu vas ?", "Je me demande ce qu'on mange ce soir...", "C'est demain le jour de l'infiermière, il me semble."],
+"sentence_search_ok" : ["Bien évidemment que je connais ce lieux ! D'ailleurs je connais beaucoup plus sur ce lieu !", "Olala, je te raconte même pas le nombre de fois que je suis passé par ici. D'ailleurs tu savais que :"],
+"sentence_error" : ["Quoi ? Je n'ai pas entendu... Tu sais, à mon âge, l'audition n'est plus ce qu'elle était...", "Ah oui, je me rapelle de ce lieu... euh... en fait non.", "Tu m'as parlé mon petit ?", "Mais qui êtes vous ?"],
+"sentence_error_acid" : ["Tu sais, ce n'est pas parce que je suis vieux que je ne comprend pas quand on essaye de me duper.", "Il y a une citation qui dit qu'on apprend pas à un vieux singe à faire la grimance.", "Que jeunesse se fasse..."],
+"sentence_continu" : ["Voilà mon petit, je suis certain que tu ne connaissais pas la moitié de ce que je viens de te raconter.", "Si tu as d'autres questions n'hésite pas. Je t'ai même pas raconté la moitié.", "Ahlala, ça me rapelle plein de souvenir tout ça. Le bon vieux temps !", "IOU ARE WELCOME comme ils disent les jeunes !"],
+"courtesy" : ["bonjour", "bjr", "salut", "slt", "hey", "coucou", "kikou", "kikoo", "hello", "ola"],
+"courtesy_answer" : ["Hey dis donc mon petit, on ne dit pas bonjour ?", "De mon temps, j'aurai prit un coup de règle sur le bout des doigts pour pas avoir salué une vieille personne."]
+}
