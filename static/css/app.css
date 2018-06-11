@@ -30,7 +30,13 @@ header, footer
 .citation
 {
     font-style: italic;
+    font-size: 1.75em;
+}
+.titre
+{
+    font-style: bold;
     font-size: 3.5em;
+    color: #e11;
 }
 
 textarea

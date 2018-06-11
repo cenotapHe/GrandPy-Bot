@@ -57,6 +57,9 @@ def delete_useless_word(query_list):
     while query_search[0] == "+":
     	query_search = query_search[1:]
     json_data.close()
+
+    print(query_search)
+
     return query_search
 
 
@@ -68,7 +71,6 @@ def recuperate_number_wiki_page(search):
     json_data.close()
     os.remove('fichier.json')
     print("NUMBER OK")
-    print(variable)
     return variable
 
 
@@ -86,7 +88,6 @@ def recuperate_name_wiki_page(search):
         else:
             name_wiki_page = name_wiki_page + i[1]
     print("NAME OK")
-    print(name_wiki_page)
     return name_wiki_page
 
 
@@ -172,34 +173,34 @@ def sequence_wiki_final(text_wiki_final):
     return list_sequence
 
 
-variable = "Est-ce que tu peux me donner l'adresse de la cathédrale notre dame openclassrooms tour eiffel s'il te plait ?"
+#variable = "Est-ce que tu peux me donner l'adresse de la cathédrale notre dame openclassrooms tour eiffel s'il te plait ?"
 
-resultat = sequence_query(variable)
+#resultat = sequence_query(variable)
 
-print(resultat)
+#print(resultat)
 
-resultat_2 = delete_useless_word(resultat)
+#resultat_2 = delete_useless_word(resultat)
 
-print(resultat_2)
+#print(resultat_2)
 
-resultat_3 = recuperate_number_wiki_page(resultat_2)
+#resultat_3 = recuperate_number_wiki_page(resultat_2)
 
-print(resultat_3)
+#print(resultat_3)
 
-resultat_3_2 = recuperate_name_wiki_page(resultat_2)
+#resultat_3_2 = recuperate_name_wiki_page(resultat_2)
 
-print(resultat_3_2)
+#print(resultat_3_2)
 
-resultat_4 = recuperate_resume_wiki_page(resultat_3_2, resultat_3)
+#resultat_4 = recuperate_resume_wiki_page(resultat_3_2, resultat_3)
 
-uprint(resultat_4)
+#uprint(resultat_4)
 
-resultat_5 = delete_balise_html(resultat_4)
+#resultat_5 = delete_balise_html(resultat_4)
 
-uprint(resultat_5)
+#uprint(resultat_5)
 
-resultat_6 = sequence_wiki_final(resultat_5)
+#resultat_6 = sequence_wiki_final(resultat_5)
 
-uprint(resultat_6)
+#uprint(resultat_6)
 
 # https://fr.wikipedia.org/w/api.php?action=query&titles=Cit%C3%A9_Paradis&prop=revisions&rvprop=content&format=json&formatversion=2

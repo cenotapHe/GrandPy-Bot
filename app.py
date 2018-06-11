@@ -20,7 +20,7 @@ app.secret_key = "blablabla"
 
 @app.route('/')
 def home():
-    return render_template('pages/home.html')
+    return render_template('pages/home.html', grandpy='accueil')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -28,6 +28,8 @@ def contact():
 
     json_data = open('sentence.json', encoding='utf-8')
     data = json.load(json_data)
+
+    polite = False
 
     if request.method == 'POST':
 
@@ -50,36 +52,52 @@ def contact():
 
             if article == []:
 
-                flash(data["sentence_error"][random.randint(
-                    0, (len(data["sentence_error"])) - 1)])
+            	flash(search.capitalize() + " quoi ?")
 
-                return render_template('pages/home.html', search=search)
+            	flash(data["sentence_No_Idea"][random.randint(
+                    0, (len(data["sentence_No_Idea"])) - 1)])
+
+            	return render_template('pages/home.html', search=search, grandpy='no_idea')
 
             else:
 
-                polite = False
-                for i in enumerate(variable_before):
-                    if variable_before[i[0]].lower in data["courtesy"]:
+                i = 0
+                while i < len(variable_before):
+
+                    if variable_before[i].lower() not in data["courtesy"]:
+                        pass
+                    else:
                         polite = True
+                    i += 1
 
-                if polite:
-                    flash(data["sentence_salutation"][random.randint(
-                        0, (len(data["sentence_salutation"])) - 1)])
-
-                else:
+                if polite == False:
                     flash(data["courtesy_answer"][random.randint(
                         0, (len(data["courtesy_answer"])) - 1)])
+
+                else:
+                    flash(data["sentence_salutation"][random.randint(
+                        0, (len(data["sentence_salutation"])) - 1)])
 
                 flash(data["sentence_search_ok"][random.randint(
                     0, (len(data["sentence_search_ok"])) - 1)])
 
+                i = 0
                 for sequence in article:
-                    flash(sequence)
+                    if i > 2:
+                        break
+                    if len(sequence) < 50:
+                        pass
+                    else:
+                      	flash(sequence)
+                      	i += 1
 
                 flash((data["sentence_continu"][random.randint(
                     0, (len(data["sentence_continu"])) - 1)]))
 
-                return render_template('pages/home.html', search=search, grandpy='Happy')
+                humeur = ['Happy', 'accueil']
+                random_humeur = humeur[random.randint(0, 1)]
+
+                return render_template('pages/home.html', search=search, grandpy=random_humeur)
 
         except IndexError:
 
