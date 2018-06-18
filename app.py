@@ -1,10 +1,10 @@
 #-*- coding: utf-8 -*-
 
-from flask import Flask, render_template, abort, request, flash, get_flashed_messages
+from flask import Flask, render_template, abort, request, flash, get_flashed_messages, send_file
 
 from datetime import datetime
 
-from flask import send_file
+from flask_cors import CORS
 
 from function import uprint, sequence_query, delete_useless_word, recuperate_name_wiki_page, recuperate_number_wiki_page, recuperate_resume_wiki_page, delete_balise_html, sequence_wiki_final
 
@@ -14,6 +14,8 @@ import random
 
 
 app = Flask(__name__)
+
+CORS(app)
 
 app.secret_key = "blablabla"
 
