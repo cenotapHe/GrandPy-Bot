@@ -19,14 +19,21 @@ CORS(app)
 
 app.secret_key = "blablabla"
 
-
+"""
 @app.route('/')
 def home():
     return render_template('pages/home.html', grandpy='accueil')
-
+"""
 
 @app.route('/', methods=['GET', 'POST'])
-def contact():
+def home():
+    if request.method == 'GET':
+        return render_template('pages/home.html', grandpy='accueil')
+
+@app.route('/results/', methods=['POST'])
+def results():
+
+    grandpyText = ""
 
     json_data = open('sentence.json', encoding='utf-8')
     data = json.load(json_data)
@@ -34,9 +41,11 @@ def contact():
     polite = False
 
     if request.method == 'POST':
+        query = request.args.get('query')
+        print(query)
 
         try:
-            variable_before = sequence_query(str(request.form['msg']))
+            variable_before = sequence_query(query)
 
             variable = delete_useless_word(variable_before)
 
@@ -54,12 +63,16 @@ def contact():
 
             if article == []:
 
-            	flash(search.capitalize() + " quoi ?")
+                grandpy = 'no_idea'
 
-            	flash(data["sentence_No_Idea"][random.randint(
-                    0, (len(data["sentence_No_Idea"])) - 1)])
+                grandpyText += (search.capitalize() + " quoi ?") + "\n"
 
-            	return render_template('pages/home.html', search=search, grandpy='no_idea')
+                grandpyText += (data["sentence_No_Idea"][random.randint(
+                    0, (len(data["sentence_No_Idea"])) - 1)]) + "\n"
+
+                search = search
+
+            	#return render_template('pages/home.html', search=search, grandpy='no_idea')
 
             else:
 
@@ -73,15 +86,15 @@ def contact():
                     i += 1
 
                 if polite == False:
-                    flash(data["courtesy_answer"][random.randint(
-                        0, (len(data["courtesy_answer"])) - 1)])
+                    grandpyText += (data["courtesy_answer"][random.randint(
+                        0, (len(data["courtesy_answer"])) - 1)]) + "\n"
 
                 else:
-                    flash(data["sentence_salutation"][random.randint(
-                        0, (len(data["sentence_salutation"])) - 1)])
+                    grandpyText += (data["sentence_salutation"][random.randint(
+                        0, (len(data["sentence_salutation"])) - 1)]) + "\n"
 
-                flash(data["sentence_search_ok"][random.randint(
-                    0, (len(data["sentence_search_ok"])) - 1)])
+                grandpyText += (data["sentence_search_ok"][random.randint(
+                    0, (len(data["sentence_search_ok"])) - 1)]) + "\n"
 
                 i = 0
                 for sequence in article:
@@ -90,39 +103,67 @@ def contact():
                     if len(sequence) < 50:
                         pass
                     else:
-                      	flash(sequence)
+                      	grandpyText += sequence + "\n"
                       	i += 1
 
-                flash((data["sentence_continu"][random.randint(
-                    0, (len(data["sentence_continu"])) - 1)]))
+                grandpyText += ((data["sentence_continu"][random.randint(
+                    0, (len(data["sentence_continu"])) - 1)])) + "\n"
 
                 humeur = ['Happy', 'accueil']
                 random_humeur = humeur[random.randint(0, 1)]
 
-                return render_template('pages/home.html', search=search, grandpy=random_humeur)
+                grandpy=random_humeur
+
+                search = search
+
+                #return render_template('pages/home.html', search=search, grandpy=random_humeur)
 
         except IndexError:
 
-            flash(data["sentence_error"][random.randint(
-                0, (len(data["sentence_error"])) - 1)])
+            grandpyText += (data["sentence_error"][random.randint(
+                0, (len(data["sentence_error"])) - 1)]) + "\n"
 
-            return render_template('pages/home.html', search='Paris', grandpy='Error')
+            grandpy='Error'
+
+            search='Paris'
+
+            #return render_template('pages/home.html', search='Paris', grandpy='Error')
 
         except FileNotFoundError:
 
-            flash(data["sentence_error_acid"][random.randint(
-                0, (len(data["sentence_error_acid"])) - 1)])
+            grandpyText += (data["sentence_error_acid"][random.randint(
+                0, (len(data["sentence_error_acid"])) - 1)]) + "\n"
 
-            return render_template('pages/home.html', search='Paris', grandpy='Acid')
+            search = 'Paris'
+
+            #return render_template('pages/home.html', search='Paris', grandpy='Acid')
+
+            grandpy='Acid'
 
         except KeyError:
 
-            flash(data["sentence_error"][random.randint(
-                0, (len(data["sentence_error"])) - 1)])
+            grandpyText += (data["sentence_error"][random.randint(
+                0, (len(data["sentence_error"])) - 1)]) + "\n"
 
-            return render_template('pages/home.html', search='Paris', grandpy='Error')
+            grandpy='Error'
+
+            search='Paris'
+
+            #return render_template('pages/home.html', search='Paris', grandpy='Error')
 
     json_data.close()
+
+    # Make or Open the SQL file
+    """
+    fichier = open("search_papy.json", "a", encoding='utf-8')
+
+    fichier.write("[\"text\": " + grandpyText + ", \"mood\": " + grandpy + ", \"search\": " + search + "]")
+    fichier.close()
+    """
+
+    dictionary = grandpy + "###" + search + "###" + grandpyText
+
+    return(dictionary)
 
 
 #@app.route('/', methods=['POST'])
@@ -141,4 +182,4 @@ def page_not_found(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3000)
+    app.run(debug=True)

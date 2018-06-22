@@ -1,38 +1,16 @@
-/*
-var req = new XMLHttpRequest();
-// La requête est asynchrone lorsque le 3ème paramètre vaut true ou est absent
-req.open("GET", "http://localhost:3000");
-// Gestion de l'événement indiquant la fin de la requête
-req.addEventListener("load", function () {
-    // Affiche la réponse reçue pour la requête
-    var variableTest = String(req.responseText);
-
-    console.log(variableTest);
-
-    document.getElementById("afficher").innerHTML += variableTest;
-
-});
-req.send(null);
-
-*/
-// Exécute un appel AJAX GET
-
-var count = 0;
-
-function ajaxGet(url) {
+function ajaxGet(url, data, callback) {
 
     var req = new XMLHttpRequest();
 
-    req.open("GET", url);
+    req.open("POST", url);
 
     req.addEventListener("load", function () {
 
         if (req.status >= 200 && req.status < 400) {
 
-            var variableTest = String(req.responseText);
+            // Appelle la fonction callback en lui passant la réponse de la requête
 
-    		document.getElementById("afficher").innerHTML += variableTest;
-
+            callback(req.responseText);
 
         } else {
 
@@ -46,37 +24,47 @@ function ajaxGet(url) {
 
         console.error("Erreur réseau avec l'URL " + url);
 
+
     });
 
-    req.send(null);
+    req.send(data);
 
 }
 
-/*
 
-ajaxGet("http://localhost:3000");
+function afficher(reponse) {
 
-function clic() {
+    var delimitate = "###";
 
-	ajaxGet("http://localhost:3000");
+    var responseList = reponse.split(delimitate);
 
-	console.log("test");
+    console.log(responseList);
+
+    document.getElementById("map").innerHTML = "</br><iframe width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyBtKZJuJonuqxYsm_f6BTcvP3UTQpzZ8gU&q=" + responseList[1] + "Paris+France\" allowfullscreen></iframe>"
+
+    document.getElementById("image").innerHTML = "</br><img src=\"/static/images/grandpy_" + responseList[0] + ".png\" width=\"10%\" height=\"10%\" />"
+
+	document.getElementById("afficher").innerHTML = responseList[2];
 
 }
+
+
+
+//req.open("POST", "http://localhost:5000");
 
 var boutonElt = document.getElementById("formulaire");
 
-boutonElt.addEventListener("click", clic);
 
-*/
+// Gestion de l'événement indiquant la fin de la requête
 
-var form = document.querySelector("form");
+boutonElt.addEventListener("click", function (e) {
 
-form.addEventListener("submit", function (e) {
+	// Récupération de la question tapé par l'utilisateur
+	var queriesElt = document.getElementById("msg");
+	var dataSend = (queriesElt.value);
 
-	ajaxGet("http://localhost:3000");
+	ajaxGet("http://localhost:5000/results/?query=" + dataSend, dataSend, afficher);
 
-	//e.preventDefault();
+    e.preventDefault();
 
 });
-

@@ -18,24 +18,24 @@ def uprint(*objects, sep=' ', end='\n', file=sys.stdout):
 
 def sequence_query(query):
 
-	print(query)
+    print(query)
 
-	query = query + " "
-	query_word = ""
-	query_list = []
-	pass_list = [" ", ".", ",", ";", "'", "-", "?", "\n", "\r"]
+    query = query + " "
+    query_word = ""
+    query_list = []
+    pass_list = [" ", ".", ",", ";", "'", "-", "?", "\n", "\r"]
 
-	for i in enumerate(query):
-	    if i[1] not in pass_list:
-	        query_word = query_word + i[1]
-	    else:
-	        if query_word != "":
-	            query_list.append(query_word)
-	            query_word = ""
+    for i in enumerate(query):
+        if i[1] not in pass_list:
+            query_word = query_word + i[1]
+        else:
+            if query_word != "":
+                query_list.append(query_word)
+                query_word = ""
 
-	print(query_list)
+    print(query_list)
 
-	return query_list
+    return query_list
 
 
 def delete_useless_word(query_list):
@@ -55,7 +55,7 @@ def delete_useless_word(query_list):
             query_search = query_search + "+" + str(query_list_2[i[0]])
 
     while query_search[0] == "+":
-    	query_search = query_search[1:]
+        query_search = query_search[1:]
     json_data.close()
 
     print(query_search)
@@ -137,16 +137,16 @@ def delete_balise_html(text_wiki_page):
             text_wiki_forth = text_wiki_forth + i[1]
 
     for i in enumerate(text_wiki_forth):
-#        if i[1] == "↑":
-#            break
+        #        if i[1] == "↑":
+        #            break
         if i[1] == "\n" and text_wiki_final[len(text_wiki_final) - 1] == "\n":
-        	text_wiki_final = text_wiki_final
+            text_wiki_final = text_wiki_final
         else:
             text_wiki_final = text_wiki_final + i[1]
 
 #    for i in enumerate(text_wiki_fifth):
 #        if i[1] == "\n" and text_wiki_final[len(text_wiki_final) - 1] != ".":
-#        	text_wiki_final = text_wiki_final + " :\n"
+#           text_wiki_final = text_wiki_final + " :\n"
 #        else:
 #            text_wiki_final = text_wiki_final + i[1]
 
@@ -177,30 +177,30 @@ def sequence_wiki_final(text_wiki_final):
 
 #resultat = sequence_query(variable)
 
-#print(resultat)
+# print(resultat)
 
 #resultat_2 = delete_useless_word(resultat)
 
-#print(resultat_2)
+# print(resultat_2)
 
 #resultat_3 = recuperate_number_wiki_page(resultat_2)
 
-#print(resultat_3)
+# print(resultat_3)
 
 #resultat_3_2 = recuperate_name_wiki_page(resultat_2)
 
-#print(resultat_3_2)
+# print(resultat_3_2)
 
 #resultat_4 = recuperate_resume_wiki_page(resultat_3_2, resultat_3)
 
-#uprint(resultat_4)
+# uprint(resultat_4)
 
 #resultat_5 = delete_balise_html(resultat_4)
 
-#uprint(resultat_5)
+# uprint(resultat_5)
 
 #resultat_6 = sequence_wiki_final(resultat_5)
 
-#uprint(resultat_6)
+# uprint(resultat_6)
 
 # https://fr.wikipedia.org/w/api.php?action=query&titles=Cit%C3%A9_Paradis&prop=revisions&rvprop=content&format=json&formatversion=2
