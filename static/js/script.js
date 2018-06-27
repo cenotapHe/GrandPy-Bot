@@ -40,11 +40,12 @@ function afficher(reponse) {
 
     console.log(responseList);
 
-    document.getElementById("map").innerHTML = "</br><iframe width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyBtKZJuJonuqxYsm_f6BTcvP3UTQpzZ8gU&q=" + responseList[1] + "Paris+France\" allowfullscreen></iframe>"
+    document.getElementById("map").innerHTML = "<iframe width=\"100%\" height=\"100%\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyBtKZJuJonuqxYsm_f6BTcvP3UTQpzZ8gU&q=" + responseList[1] + "Paris+France\" allowfullscreen></iframe>"
 
-    document.getElementById("image").innerHTML = "</br><img src=\"/static/images/grandpy_" + responseList[0] + ".png\" width=\"10%\" height=\"10%\" />"
+    document.getElementById("image").innerHTML = "</br><img src=\"/static/images/grandpy_" + responseList[0] + ".png\" width=\"120px\" height=\"120px\" />"
 
-	document.getElementById("afficher").innerHTML = responseList[2];
+
+    document.getElementById("afficher").innerHTML = "</br>" + responseList[2]; 
 
 }
 

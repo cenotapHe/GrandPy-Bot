@@ -109,8 +109,8 @@ def results():
                 grandpyText += ((data["sentence_continu"][random.randint(
                     0, (len(data["sentence_continu"])) - 1)])) + "\n"
 
-                humeur = ['Happy', 'accueil']
-                random_humeur = humeur[random.randint(0, 1)]
+                humeur = ['Happy', 'accueil', 'accueil_main', 'Happy_2']
+                random_humeur = humeur[random.randint(0, 3)]
 
                 grandpy=random_humeur
 

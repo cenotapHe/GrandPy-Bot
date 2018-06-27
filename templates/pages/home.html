@@ -1,52 +1,48 @@
 {% extends 'layouts/default.html' %}
 
 {% block body %}
+    
+    <div class="row">
+        <div class="col-md-12">
 
-	<h1>Bienvenue sur GrandPy Bot !</h1>
+	       <h2>Bienvenue sur GrandPy Bot !</h2>
 
-	<p>N'hésitez pas à demander une petite adresse à notre GrandPy préféré !</p>
+        </div>
+    </div>
 
-    <form method="post">
+    <div class="row">
+        <div class="col-md-4">
 
-        <label for="msg">Votre question</label><br />
+	       <p>N'hésitez pas à demander une petite adresse à notre GrandPy préféré !</p>
 
-        <textarea type= "text" id="msg" name="msg" class="msg"></textarea><br />
+            <form method="post">
 
-        <button type="submit" id="formulaire">Envoyer</button>
+                <label for="msg">Votre question :</label><br />
 
-    </form>
+                <textarea type= "text" id="msg" name="msg" class="msg" style="resize:none"></textarea><br />
 
-    <div id="map">
+                <button type="submit" id="formulaire">Envoyer</button>
 
-        </br><iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBtKZJuJonuqxYsm_f6BTcvP3UTQpzZ8gU&q={{ search }}Paris+France" allowfullscreen></iframe> 
+            </form>
+            </br>
+        </div>
+
+        <div id="map" class="col-md-8">
+
+            <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBtKZJuJonuqxYsm_f6BTcvP3UTQpzZ8gU&q={{ search }}Paris+France" allowfullscreen></iframe> 
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div id="image" class="col-md-2"></div>
+
+        <div id="afficher" class="col-md-10"></div>
 
     </div>
 
-    <div id="image"></div>
-
-    <div id="afficher"></div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <!--<script text=javascript>
-
-        $("#formulaire").click(function(){
-
-            alert("clic !");
-
-            $.ajax({
-
-                url : '/',
-
-                type : 'GET',
-
-                data : 'valeur1=' + msg,
-
-                dataType : 'JSON'
-
-            });
-        });
-    </script>-->
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
