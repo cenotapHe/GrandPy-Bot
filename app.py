@@ -19,16 +19,12 @@ CORS(app)
 
 app.secret_key = "blablabla"
 
-"""
-@app.route('/')
-def home():
-    return render_template('pages/home.html', grandpy='accueil')
-"""
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'GET':
         return render_template('pages/home.html', grandpy='accueil')
+
 
 @app.route('/results/', methods=['POST'])
 def results():
@@ -72,8 +68,6 @@ def results():
 
                 search = search
 
-            	#return render_template('pages/home.html', search=search, grandpy='no_idea')
-
             else:
 
                 i = 0
@@ -103,8 +97,8 @@ def results():
                     if len(sequence) < 50:
                         pass
                     else:
-                      	grandpyText += sequence + "\n"
-                      	i += 1
+                        grandpyText += sequence + "\n"
+                        i += 1
 
                 grandpyText += ((data["sentence_continu"][random.randint(
                     0, (len(data["sentence_continu"])) - 1)])) + "\n"
@@ -112,22 +106,18 @@ def results():
                 humeur = ['Happy', 'accueil', 'accueil_main', 'Happy_2']
                 random_humeur = humeur[random.randint(0, 3)]
 
-                grandpy=random_humeur
+                grandpy = random_humeur
 
                 search = search
-
-                #return render_template('pages/home.html', search=search, grandpy=random_humeur)
 
         except IndexError:
 
             grandpyText += (data["sentence_error"][random.randint(
                 0, (len(data["sentence_error"])) - 1)]) + "\n"
 
-            grandpy='Error'
+            grandpy = 'Error'
 
-            search='Paris'
-
-            #return render_template('pages/home.html', search='Paris', grandpy='Error')
+            search = 'Paris'
 
         except FileNotFoundError:
 
@@ -136,39 +126,22 @@ def results():
 
             search = 'Paris'
 
-            #return render_template('pages/home.html', search='Paris', grandpy='Acid')
-
-            grandpy='Acid'
+            grandpy = 'Acid'
 
         except KeyError:
 
             grandpyText += (data["sentence_error"][random.randint(
                 0, (len(data["sentence_error"])) - 1)]) + "\n"
 
-            grandpy='Error'
+            grandpy = 'Error'
 
-            search='Paris'
-
-            #return render_template('pages/home.html', search='Paris', grandpy='Error')
+            search = 'Paris'
 
     json_data.close()
-
-    # Make or Open the SQL file
-    """
-    fichier = open("search_papy.json", "a", encoding='utf-8')
-
-    fichier.write("[\"text\": " + grandpyText + ", \"mood\": " + grandpy + ", \"search\": " + search + "]")
-    fichier.close()
-    """
 
     dictionary = grandpy + "###" + search + "###" + grandpyText
 
     return(dictionary)
-
-
-#@app.route('/', methods=['POST'])
-# def reponse_grandpy():
-#	return "Maintenant il faut que je récupère ces données... *facepalm*"
 
 
 @app.context_processor

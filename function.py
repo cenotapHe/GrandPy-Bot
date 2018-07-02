@@ -137,11 +137,6 @@ def delete_balise_html(text_wiki_page):
         else:
             text_wiki_final = text_wiki_final + i[1]
 
-#    for i in enumerate(text_wiki_fifth):
-#        if i[1] == "\n" and text_wiki_final[len(text_wiki_final) - 1] != ".":
-#           text_wiki_final = text_wiki_final + " :\n"
-#        else:
-#            text_wiki_final = text_wiki_final + i[1]
 
     while text_wiki_final.find("&#160;") != -1:
         print(text_wiki_final.find("&#160;"))
@@ -164,36 +159,3 @@ def sequence_wiki_final(text_wiki_final):
             sequence = ""
 
     return list_sequence
-
-
-#variable = "Est-ce que tu peux me donner l'adresse de la cathédrale notre dame openclassrooms tour eiffel s'il te plait ?"
-
-#resultat = sequence_query(variable)
-
-# print(resultat)
-
-#resultat_2 = delete_useless_word(resultat)
-
-# print(resultat_2)
-
-#resultat_3 = recuperate_number_wiki_page(resultat_2)
-
-# print(resultat_3)
-
-#resultat_3_2 = recuperate_name_wiki_page(resultat_2)
-
-# print(resultat_3_2)
-
-#resultat_4 = recuperate_resume_wiki_page(resultat_3_2, resultat_3)
-
-# uprint(resultat_4)
-
-#resultat_5 = delete_balise_html(resultat_4)
-
-# uprint(resultat_5)
-
-#resultat_6 = sequence_wiki_final(resultat_5)
-
-# uprint(resultat_6)
-
-# https://fr.wikipedia.org/w/api.php?action=query&titles=Cit%C3%A9_Paradis&prop=revisions&rvprop=content&format=json&formatversion=2

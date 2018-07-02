@@ -8,8 +8,6 @@ function ajaxGet(url, data, callback) {
 
         if (req.status >= 200 && req.status < 400) {
 
-            // Appelle la fonction callback en lui passant la réponse de la requête
-
             callback(req.responseText);
 
         } else {
@@ -51,12 +49,7 @@ function afficher(reponse) {
 
 
 
-//req.open("POST", "http://localhost:5000");
-
 var boutonElt = document.getElementById("formulaire");
-
-
-// Gestion de l'événement indiquant la fin de la requête
 
 boutonElt.addEventListener("click", function (e) {
 
