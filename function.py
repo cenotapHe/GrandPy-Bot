@@ -18,8 +18,6 @@ def uprint(*objects, sep=' ', end='\n', file=sys.stdout):
 
 def sequence_query(query):
 
-    print(query)
-
     query = query + " "
     query_word = ""
     query_list = []
@@ -32,8 +30,6 @@ def sequence_query(query):
             if query_word != "":
                 query_list.append(query_word)
                 query_word = ""
-
-    print(query_list)
 
     return query_list
 
@@ -57,8 +53,6 @@ def delete_useless_word(query_list):
     while query_search[0] == "+":
         query_search = query_search[1:]
     json_data.close()
-
-    print(query_search)
 
     return query_search
 
@@ -98,7 +92,6 @@ def recuperate_resume_wiki_page(name_wiki_page, number_wiki_page):
     variable = data["query"]["pages"][str(number_wiki_page)]["extract"]
     json_data.close()
     os.remove('fichier4.json')
-    print("WIKIPAGE OK")
     return variable
 
 
