@@ -44,13 +44,13 @@ Also, the website link is indicated on the "Livrable".
 
 ## Functionality
 
-1 - GrandPy-Bot find your locate on a Google Map.
+1 - GrandPy-Bot find your location on a Google Map.
 
 2 - GrandPy-Bot tell an annecdote in relation with your location finded.
 
 ## Getting Started
 
-Press "Envoyer" with your question.
+Press "Envoyer" with your question in the text area.
 
 ## Functionnement
 

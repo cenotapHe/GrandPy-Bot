@@ -1,23 +1,14 @@
 # coding: utf-8
 
+# Import the different module for run the function
 import json
 import os
 import sys
 
 
-def uprint(*objects, sep=' ', end='\n', file=sys.stdout):
-    """ Just print fonction, without probleme of encodation from sql file."""
-    enc = file.encoding
-    if enc == 'UTF-8':
-        print(*objects, sep=sep, end=end, file=file)
-    else:
-        def f(obj): return str(obj).encode(
-            enc, errors='backslashreplace').decode(enc)
-        print(*map(f, objects), sep=sep, end=end, file=file)
-
 
 def sequence_query(query):
-
+    """ This function sequence the querie of user in a list of word."""
     query = query + " "
     query_word = ""
     query_list = []
@@ -35,6 +26,7 @@ def sequence_query(query):
 
 
 def delete_useless_word(query_list):
+    """ This function delete the useless word of the querie, with the file JSON asocied."""
     json_data = open('stopwords-fr.json', encoding='utf-8')
     data = json.load(json_data)
     query_list_2 = []
@@ -58,6 +50,7 @@ def delete_useless_word(query_list):
 
 
 def recuperate_number_wiki_page(search):
+    """ This function use the API of wikipedia. And recuperate the number of the page wiki."""
     os.system("curl -X GET \"https://fr.wikipedia.org/w/api.php?action=query&list=search&srsearch={}&format=json\" --output fichier.json".format(search))
     json_data = open('fichier.json')
     data = json.load(json_data)
@@ -69,6 +62,7 @@ def recuperate_number_wiki_page(search):
 
 
 def recuperate_name_wiki_page(search):
+    """ This function use the API of wikipedia. And recuperate the name of the page wiki."""
     os.system("curl -X GET \"https://fr.wikipedia.org/w/api.php?action=query&list=search&srsearch={}&format=json\" --output fichier2.json".format(search))
     json_data = open('fichier2.json')
     data = json.load(json_data)
@@ -86,6 +80,7 @@ def recuperate_name_wiki_page(search):
 
 
 def recuperate_resume_wiki_page(name_wiki_page, number_wiki_page):
+    """ This function use the API of wikipedia, with the number and the name page. And recuperate the article of the page wiki."""
     os.system("curl -X GET \"https://fr.wikipedia.org/w/api.php?action=query&titles={}&prop=extracts&exsentences=4&format=json\" --output fichier4.json".format(name_wiki_page))
     json_data = open('fichier4.json')
     data = json.load(json_data)
@@ -96,6 +91,9 @@ def recuperate_resume_wiki_page(name_wiki_page, number_wiki_page):
 
 
 def delete_balise_html(text_wiki_page):
+    """ This function transform the article of wikipedia, for a better lisibility."""
+
+    # Initiate variable for the function
     write = True
     text_wiki_second = ""
     text_wiki_third = ""
@@ -103,6 +101,7 @@ def delete_balise_html(text_wiki_page):
     text_wiki_fifth = ""
     text_wiki_final = ""
 
+    # Delete balise html
     for i in enumerate(text_wiki_page):
         if i[1] == '<':
             write = False
@@ -113,6 +112,7 @@ def delete_balise_html(text_wiki_page):
         if write == True:
             text_wiki_second = text_wiki_second + i[1]
 
+    # Delete the comment from wikipedia
     for i in enumerate(text_wiki_second):
         if i[1] == '[':
             write = False
@@ -129,15 +129,14 @@ def delete_balise_html(text_wiki_page):
         else:
             text_wiki_forth = text_wiki_forth + i[1]
 
+    # Better gestion for the back to the line
     for i in enumerate(text_wiki_forth):
-        #        if i[1] == "↑":
-        #            break
         if i[1] == "\n" and text_wiki_final[len(text_wiki_final) - 1] == "\n":
             text_wiki_final = text_wiki_final
         else:
             text_wiki_final = text_wiki_final + i[1]
 
-
+    # Delete caracter error from wikipedia
     while text_wiki_final.find("&#160;") != -1:
         print(text_wiki_final.find("&#160;"))
         text_wiki_final = text_wiki_final[:text_wiki_final.find(
@@ -148,6 +147,7 @@ def delete_balise_html(text_wiki_page):
 
 
 def sequence_wiki_final(text_wiki_final):
+    """ Sequence the article wikipedia by each line."""
     sequence = ""
     list_sequence = []
 

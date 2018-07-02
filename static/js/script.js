@@ -1,3 +1,4 @@
+// appel AJAX POST
 function ajaxGet(url, data, callback) {
 
     var req = new XMLHttpRequest();
@@ -6,6 +7,7 @@ function ajaxGet(url, data, callback) {
 
     req.addEventListener("load", function () {
 
+        // with no error status
         if (req.status >= 200 && req.status < 400) {
 
             callback(req.responseText);
@@ -18,6 +20,7 @@ function ajaxGet(url, data, callback) {
 
     });
 
+    // display error if the HTTP status is not good
     req.addEventListener("error", function () {
 
         console.error("Erreur réseau avec l'URL " + url);
@@ -30,7 +33,8 @@ function ajaxGet(url, data, callback) {
 }
 
 
-function afficher(reponse) {
+// this function take the return from flask, interprete it, and display it on HTML
+function display(reponse) {
 
     var delimitate = "###";
 
@@ -42,22 +46,20 @@ function afficher(reponse) {
 
     document.getElementById("image").innerHTML = "</br><img src=\"/static/images/grandpy_" + responseList[0] + ".png\" width=\"120px\" height=\"120px\" />"
 
-
-    document.getElementById("afficher").innerHTML = "</br>" + responseList[2]; 
+    document.getElementById("display").innerHTML = "</br>" + responseList[2]; 
 
 }
 
 
-
-var boutonElt = document.getElementById("formulaire");
+// make a button variable for launch AJAX
+var boutonElt = document.getElementById("form");
 
 boutonElt.addEventListener("click", function (e) {
 
-	// Récupération de la question tapé par l'utilisateur
 	var queriesElt = document.getElementById("msg");
 	var dataSend = (queriesElt.value);
 
-	ajaxGet("http://localhost:5000/results/?query=" + dataSend, dataSend, afficher);
+	ajaxGet("http://localhost:5000/results/?query=" + dataSend, dataSend, display);
 
     e.preventDefault();
 
