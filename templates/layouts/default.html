@@ -10,8 +10,8 @@
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 
-
 </head>
+
 <body>
 
 	{% include 'layouts/partials/_header.html' %}
@@ -19,24 +19,6 @@
 	<div class="wrapper">
 
 		{% block body %}{% endblock %}
-
-		{% with messages = get_flashed_messages() %}
-
-        {% if messages %}
-
-            <ul>
-
-            {% for m in messages %}
-
-                <li>{{ m }}</li>
-
-            {% endfor %}
-
-            </ul>
-
-        {% endif %}
-
-        {% endwith %}
 
 	</div>
 
