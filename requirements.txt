@@ -18,7 +18,6 @@ lxml==3.5.0
 MarkupSafe==1.0
 matplotlib==1.5.1
 more-itertools==4.2.0
-numpy==1.11.0
 petname==2.0
 Pillow==3.1.2
 pluggy==0.6.0
