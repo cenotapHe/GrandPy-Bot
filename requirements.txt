@@ -22,7 +22,6 @@ numpy==1.11.0
 petname==2.0
 Pillow==3.1.2
 pluggy==0.6.0
-progressbar==2.3
 py==1.5.4
 pyelftools==0.23
 pygame==1.9.4.dev0
