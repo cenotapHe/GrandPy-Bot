@@ -39,5 +39,4 @@ simplejson==3.8.1
 six==1.10.0
 tabulate==0.7.5
 urllib3==1.13.1
-vboxapi==1.0
 Werkzeug==0.14.1
