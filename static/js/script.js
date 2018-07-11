@@ -36,8 +36,6 @@ function ajaxGet(url, data, callback) {
 // this function take the return from flask, interprete it, and display it on HTML
 function display(reponse) {
 
-    alert(reponse)
-
     var delimitate = "###";
 
     var responseList = reponse.split(delimitate);
@@ -50,8 +48,6 @@ function display(reponse) {
 
     document.getElementById("display").innerHTML = "</br>" + responseList[2];
 
-    alert("display ok")
-
 }
 
 
@@ -63,7 +59,7 @@ boutonElt.addEventListener("click", function (e) {
 	var queriesElt = document.getElementById("msg");
 	var dataSend = (queriesElt.value);
 
-	ajaxGet("http://localhost:5000/results/?query=" + dataSend, dataSend, display);
+	ajaxGet("https://localhost:5000/results/?query=" + dataSend, dataSend, display);
 
     e.preventDefault();
 
