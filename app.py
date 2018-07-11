@@ -21,7 +21,7 @@ app.secret_key = "secret.key.for.running.apps"
 
 
 # Use this route for load the home page without user's request
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def home():
     if request.method == 'GET':
         return render_template('pages/home.html', grandpy='accueil')
@@ -54,7 +54,6 @@ def results():
             article = recuperate_resume_wiki_page(name, number)
             article = delete_balise_html(article)
             article = sequence_wiki_final(article)
-
 
             # If GrandPy doesn't found the location
             if article == []:

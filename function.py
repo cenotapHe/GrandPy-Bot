@@ -87,6 +87,7 @@ def recuperate_resume_wiki_page(name_wiki_page, number_wiki_page):
     variable = data["query"]["pages"][str(number_wiki_page)]["extract"]
     json_data.close()
     os.remove('fichier4.json')
+
     return variable
 
 
@@ -125,13 +126,6 @@ def delete_balise_html(text_wiki_page):
 
     for i in enumerate(text_wiki_third):
         if i[1] == ']' or i[1] == '>':
-            text_wiki_forth = text_wiki_forth
-        else:
-            text_wiki_forth = text_wiki_forth + i[1]
-
-    # Better gestion for the back to the line
-    for i in enumerate(text_wiki_forth):
-        if i[1] == "\n" and text_wiki_final[len(text_wiki_final) - 1] == "\n":
             text_wiki_final = text_wiki_final
         else:
             text_wiki_final = text_wiki_final + i[1]
@@ -143,6 +137,7 @@ def delete_balise_html(text_wiki_page):
             "&#160;")] + " " + text_wiki_final[(text_wiki_final.find("&#160;") + 6):]
 
     print("ERASE HTML OK")
+
     return text_wiki_final
 
 
@@ -157,5 +152,7 @@ def sequence_wiki_final(text_wiki_final):
         else:
             list_sequence.append(sequence)
             sequence = ""
+
+    list_sequence.append(sequence)
 
     return list_sequence
