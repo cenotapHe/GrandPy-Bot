@@ -59,7 +59,7 @@ boutonElt.addEventListener("click", function (e) {
 	var queriesElt = document.getElementById("msg");
 	var dataSend = (queriesElt.value);
 
-	ajaxGet("https://localhost:5000/results/?query=" + dataSend, dataSend, display);
+   	ajaxGet("https://my-grandpy-bot.herokuapp.com/results/?query=" + dataSend, dataSend, display);
 
     e.preventDefault();
 
