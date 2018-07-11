@@ -36,6 +36,8 @@ function ajaxGet(url, data, callback) {
 // this function take the return from flask, interprete it, and display it on HTML
 function display(reponse) {
 
+    alert(reponse)
+
     var delimitate = "###";
 
     var responseList = reponse.split(delimitate);
@@ -46,7 +48,9 @@ function display(reponse) {
 
     document.getElementById("image").innerHTML = "</br><img src=\"/static/images/grandpy_" + responseList[0] + ".png\" width=\"120px\" height=\"120px\" />"
 
-    document.getElementById("display").innerHTML = "</br>" + responseList[2]; 
+    document.getElementById("display").innerHTML = "</br>" + responseList[2];
+
+    alert("display ok")
 
 }
 
